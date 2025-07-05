@@ -1,0 +1,199 @@
+{
+	"info": {
+		"_postman_id": "c712cdf7-2c78-4bac-8de8-5cb781fbaf92",
+		"name": "API REST",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "46277968",
+		"_collection_link": "https://ana-8066171.postman.co/workspace/c30117eb-1a30-48a2-8413-5dfab48c4850/collection/46277968-c712cdf7-2c78-4bac-8de8-5cb781fbaf92?action=share&source=collection_link&creator=46277968"
+	},
+	"item": [
+		{
+			"name": "cadastrar",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nomeTarefa\": \"Desenvolvimento da API\",\r\n    \"dataEntrega\": \"2025-12-12\",\r\n    \"responsavelTarefa\": \"Ana4771859\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/tarefa",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tarefa"
+					]
+				},
+				"description": "## Endpoint: Create Task\n\nThis endpoint allows users to create a new task in the system. By sending a POST request to the `/tarefa` endpoint, users can submit the details of the task they wish to create.\n\n### Request\n\n#### Method\n\n`POST`\n\n#### Request Body\n\nThe request body must be in JSON format and should contain the following parameters:\n\n- **nomeTarefa** (string): The name of the task to be created.\n    \n- **dataEntrega** (string): The due date for the task in the format YYYY-MM-DD.\n    \n- **responsavelTarefa** (string): The identifier of the person responsible for the task.\n    \n\n**Example Request Body:**\n\n``` json\n{\n  \"nomeTarefa\": \"Desenvolvimento da API\",\n  \"dataEntrega\": \"2025-12-12\",\n  \"responsavelTarefa\": \"Ana4771859\"\n}\n\n ```\n\n### Response\n\nUpon successful creation of the task, the server will respond with a status code of `200` and a JSON object reflecting the submitted task details. The response structure will contain the following fields:\n\n- **nomeTarefa** (string): The name of the task that was created.\n    \n- **dataEntrega** (string): The due date of the task.\n    \n- **responsavelTarefa** (string): The identifier of the person responsible for the task.\n    \n\n**Example Response:**\n\n``` json\n{\n  \"nomeTarefa\": \"\",\n  \"dataEntrega\": \"\",\n  \"responsavelTarefa\": \"\"\n}\n\n ```\n\n### Notes\n\n- Ensure that all required fields are included in the request body to avoid errors.\n    \n- The response will return the task details, which may be empty if the task creation logic does not populate them."
+			},
+			"response": []
+		},
+		{
+			"name": "listar",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8080/tarefa",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"tarefa"
+					]
+				},
+				"description": "### Endpoint Description\n\nThis endpoint retrieves a list of tasks from the server.\n\n### Request\n\n- **Method**: GET\n    \n- **URL**: `http://127.0.0.1:8080/tarefa`\n    \n\n### Response\n\n- **Status Code**: 200 OK\n    \n- **Content-Type**: application/json\n    \n- **Response Body**: An array of task objects, where each object contains the following fields:\n    \n    - `nomeTarefa`: The name of the task (string).\n        \n    - `dataEntrega`: The due date for the task (string).\n        \n    - `responsavelTarefa`: The person responsible for the task (string).\n        \n\n### Notes\n\n- The response will return an array, which may contain multiple task objects or none if no tasks are available.\n    \n- Ensure that the server is running and accessible at the specified URL to receive the expected response."
+			},
+			"response": []
+		},
+		{
+			"name": "update",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nomeTarefa\": \"Desenvolvimento da API\",\r\n  \"dataEntrega\": \"2025-12-12\",\r\n  \"responsavelTarefa\": \"Ana Clara Martins Damasceno\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/tarefa/10",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"tarefa",
+						"10"
+					]
+				},
+				"description": "### Update Task Endpoint\n\nThis endpoint allows you to update an existing task with the specified ID. The HTTP method used for this request is **PUT**, and the endpoint is `/tarefa/{id}`, where `{id}` is the unique identifier of the task you want to update.\n\n#### Request Parameters\n\nThe request requires a JSON payload in the body with the following parameters:\n\n- **nomeTarefa** (string): The name of the task you want to update.\n    \n- **dataEntrega** (string): The due date for the task, formatted as `YYYY-MM-DD`.\n    \n- **responsavelTarefa** (string): The name of the person responsible for the task.\n    \n\n#### Example Request Body\n\n``` json\n{\n  \"nomeTarefa\": \"Desenvolvimento da API\",\n  \"dataEntrega\": \"2025-12-12\",\n  \"responsavelTarefa\": \"Ana Clara Martins Damasceno\"\n}\n\n ```\n\n#### Expected Response\n\nUpon a successful update, the server will respond with a **200 OK** status and a JSON object that confirms the updated task details. The response will have the following structure:\n\n``` json\n{\n  \"nomeTarefa\": \"\",\n  \"dataEntrega\": \"\",\n  \"responsavelTarefa\": \"\"\n}\n\n ```\n\nNote that the returned values will reflect the updated task details as per the provided request."
+			},
+			"response": []
+		},
+		{
+			"name": "listar update",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8080/tarefa/10",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"tarefa",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/tarefa/7",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"tarefa",
+						"7"
+					]
+				},
+				"description": "### DELETE Request to Remove a Task\n\nThis endpoint is used to delete a specific task identified by its unique ID. In this case, the task with ID `7` will be removed from the system.\n\n#### Request\n\n- **Method**: DELETE\n    \n- **URL**: `http://127.0.0.1:8080/tarefa/{id}`\n    \n- **Path Parameter**:\n    \n    - `id` (integer): The unique identifier of the task to be deleted.\n        \n\n#### Response\n\nUpon successful deletion of the task, the API will respond with:\n\n- **Status Code**: `200 OK`\n    \n- **Content-Type**: `text/xml`\n    \n\nThe response body may not contain any additional content, indicating that the operation was completed successfully.\n\nMake sure to replace `{id}` in the URL with the actual ID of the task you wish to delete."
+			},
+			"response": []
+		},
+		{
+			"name": "listar delete",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8080/tarefa",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"tarefa"
+					]
+				},
+				"description": "## API Endpoint: Retrieve Tasks\n\n### Request\n\n- **Method**: GET\n    \n- **URL**: `http://127.0.0.1:8080/tarefa`\n    \n\n### Description\n\nThis endpoint retrieves a list of tasks from the server. It does not require any request parameters, as it is designed to return all tasks currently stored.\n\n### Response\n\n- **Status Code**: 200 OK\n    \n- **Content-Type**: application/json\n    \n- **Response Body**: The response will be an array of tasks. In the case where no tasks are available, an empty array `[]` will be returned.\n    \n\n### Notes\n\n- Ensure that the server is running and accessible at the specified URL to successfully retrieve the tasks.\n    \n- This endpoint is useful for applications that need to display or manage tasks stored on the server."
+			},
+			"response": []
+		}
+	]
+}
